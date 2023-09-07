@@ -1,0 +1,41 @@
+<!-- search_and_delete.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search and Delete Products</title>
+    <!-- Add your CSS and JS dependencies here -->
+</head>
+<body>
+    <h1>Search and Delete Products</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search and Delete</button>
+    </form>
+
+    <!-- Popup for displaying search results -->
+    <div id="popup" style="display: none;">
+        <h2>Search Results</h2>
+        <ul id="searchResults">
+            {% for product in products %}
+                <li>{{ product.product_name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Add your other content here -->
+
+    <script>
+        // JavaScript code to show the popup when the form is submitted
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const popup = document.getElementById("popup");
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                popup.style.display = "block";
+            });
+        });
+    </script>
+</body>
+</html>
